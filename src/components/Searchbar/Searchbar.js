@@ -11,7 +11,7 @@ const Searchbar = ({ onSubmit }) => {
 return (
   <SearchbarStyled>
   <Formik 
-    initialValues={{name: ''}}
+    initialValues={{query: ''}}
     onSubmit={handleSubmit}>
     {({ isSubmitting }) => (
       <Form className="form"
@@ -23,7 +23,7 @@ return (
 
     <Field
       type="text"
-      name="name"      
+      name="query"      
       autoComplete="off"
       autoFocus
       placeholder="Search images and photos"
