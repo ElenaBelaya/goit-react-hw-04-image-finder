@@ -1,22 +1,39 @@
-import SearchbarStyled from "./Searchbar";
+import { SearchbarStyled, SearchButton, ButtonLabel } from "./Searchbar.styled";
+import { Formik, Form, Field } from "formik";
 
-export const Searchbar = ({ onSubmit }) => (
-<SearchbarStyled>
-  <form class="form">
-    <button type="submit" class="button"
-    onClick={() => onSubmit()}>
-      <span class="button-label">Search</span>
-    </button>
 
-    <input
-      class="input"
+const Searchbar = ({ onSubmit }) => {
+  const handleSubmit = async(values, { setSubmitting, resetForm }) => {
+    await onSubmit(values);
+    setSubmitting(false);
+    resetForm();
+  }
+return (
+  <SearchbarStyled>
+  <Formik 
+    initialValues={{name: ''}}
+    onSubmit={handleSubmit}>
+    {({ isSubmitting }) => (
+      <Form className="form"
+      >
+    <SearchButton type="submit"
+    disabled={isSubmitting}>
+      <ButtonLabel>Search</ButtonLabel>
+    </SearchButton>
+
+    <Field
       type="text"
-      autocomplete="off"
-      autofocus
+      name="name"      
+      autoComplete="off"
+      autoFocus
       placeholder="Search images and photos"
     />
-  </form>
-</SearchbarStyled>
-);
+  </Form>
+    )}
+  
+  </Formik> 
+  </SearchbarStyled> 
 
-export default Searchbar;
+)}
+
+    export default Searchbar;

@@ -88,6 +88,7 @@ img {
 
 .SearchForm-button:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 .SearchForm-button-label {
