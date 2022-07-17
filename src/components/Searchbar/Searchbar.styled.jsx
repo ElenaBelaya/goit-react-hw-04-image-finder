@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 
-export const SearchbarStyled = styled.header`
+export const SearchbarStyled = styled('header')`
 top: 0;
 left: 0;
 position: sticky;
@@ -19,27 +19,8 @@ background-color: #3f51b5;
 box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
   0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `
-export const SearchButton = styled.button`
-  display: inline-block;  
-  border: 0;
-  opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none; 
-  &:hover{
-    opacity: 1;
-    cursor: pointer;
-  };   
-  &:before{
-    width: 16px;
-    height: 16px;
-    content: "\f002";
-    font-family: FontAwesome;
-    font-size: 16px;
-    color: #000000;
 
-  
-`
- export const ButtonLabel = styled.span`
+export const ButtonLabel = styled('span')`
  position: absolute;
   width: 1px;
   height: 1px;

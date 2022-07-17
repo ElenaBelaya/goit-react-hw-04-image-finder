@@ -1,5 +1,6 @@
-import { SearchbarStyled, SearchButton, ButtonLabel } from "./Searchbar.styled";
+import { SearchbarStyled, ButtonLabel  } from "./Searchbar.styled";
 import { Formik, Form, Field } from "formik";
+import './Searchbar.css';
 
 
 const Searchbar = ({ onSubmit }) => {
@@ -16,12 +17,13 @@ return (
     {({ isSubmitting }) => (
       <Form className="form"
       >
-    <SearchButton type="submit"
+    <button type="submit" className="search-button"
     disabled={isSubmitting}>
       <ButtonLabel>Search</ButtonLabel>
-    </SearchButton>
-
+    </button>
+   
     <Field
+      className="input"
       type="text"
       name="query"      
       autoComplete="off"
