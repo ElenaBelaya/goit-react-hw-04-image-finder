@@ -1,15 +1,42 @@
-import { ModalWindow } from './Modal.styled';
+import { Component } from 'react';
+import { Overlay, ModalWindow } from './Modal.styled';
+import { createPortal } from 'react-dom';
 
-const Modal = ({ onModalClose }) => {
-return (
-    <ModalWindow>
-       <button type="button"
-       onClick={onModalClose}>
-        Close</button>
-    </ModalWindow>
-    
-    )
+const modalRoot = document.querySelector('#modal-root');
+
+export class Modal extends Component {
+
+componentDidMount() {
+ window.addEventListener('keydown', this.handleKeyDown)
 }
 
+componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown)
+}
 
-export default Modal;
+handleKeyDown = (event) => {
+    if(event.code === "Escape") {  
+        this.props.onModalClose();
+    }
+}
+
+handleBackDropClick = (event) => {
+if(event.currentTarget === event.target) {
+    this.props.onModalClose();  
+}
+
+}
+render() {
+const { image, tag } = this.props;
+return createPortal(
+    <Overlay onClick={this.handleBackDropClick}>   
+        <ModalWindow >
+        <img src={image} alt={tag} />
+        </ModalWindow>
+       
+    </Overlay>,
+    modalRoot,    
+    );
+}
+}
+
