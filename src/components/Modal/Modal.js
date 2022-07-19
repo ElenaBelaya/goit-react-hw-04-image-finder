@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export class Modal extends Component {
+class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
@@ -44,3 +44,5 @@ Modal.propTypes = {
   handleKeyDown: PropTypes.func,
   handleBackDropClick: PropTypes.func,
 };
+
+export default Modal;

@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import Searchbar from './Searchbar/Searchbar';
-import { ImagyGallery } from './ImageGallery/ImageGallery';
+import Searchbar from './Searchbar';
+import ImagyGallery from './ImageGallery';
 import * as API from './services/app';
-import LoardMore from './Button/Button';
+import LoardMore from './Button';
+import Loader from './Loader';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from './Loader/Loader';
 import { AppStyled } from './App.styled';
 
 export class App extends Component {
@@ -16,17 +16,15 @@ export class App extends Component {
     isLoading: false,
   };
 
+  componentDidMount() {
+    this.setState({ isLoading: false });
+  }
   async componentDidUpdate(_, prevState) {
-    if (
-      prevState.page !== this.state.page ||
-      prevState.query !== this.state.query
-    ) {
+    const { page, query } = this.state;
+    if (prevState.page !== page || prevState.query !== query) {
       try {
         this.setState({ isLoading: true });
-        const pictures = await API.getPictures(
-          this.state.query,
-          this.state.page
-        );
+        const pictures = await API.getPictures(query, page);
         this.setState(state => ({
           pictures: [...state.pictures, ...pictures.hits],
           isLoading: false,
@@ -56,8 +54,12 @@ export class App extends Component {
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleSubmit} />
-        {isLoading ? <Loader /> : <ImagyGallery pictures={pictures} />}
-        {pictures.length !== 0 && <LoardMore onLoadMore={this.handlLoadMore} />}
+        {isLoading && <Loader />}
+
+        <ImagyGallery pictures={pictures} isLoading={isLoading} />
+        {pictures.length !== 0 && (
+          <LoardMore onLoadMore={this.handlLoadMore} isLoading={isLoading} />
+        )}
       </AppStyled>
     );
   }
