@@ -6,21 +6,29 @@ import { createPortal } from 'react-dom';
 const modalRoot = document.querySelector('#modal-root');
 
 function Modal({ onModalClose, image, tag }) {
-  const handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      onModalClose();
-    }
-  };
-
   useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.code === 'Escape') {
+        onModalClose();
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-  }, []);
 
-  useEffect(() => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   });
+
+  //  useEffect(() => {
+  //    window.addEventListener('keydown', handleKeyDown);
+  //  }, []);
+
+  //  useEffect(() => {
+  //    return () => {
+  //      window.removeEventListener('keydown', handleKeyDown);
+  //    };
+  //  }, []);
 
   const handleBackDropClick = event => {
     if (event.currentTarget === event.target) {
