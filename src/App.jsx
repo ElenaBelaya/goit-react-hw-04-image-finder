@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Searchbar from './Searchbar';
-import ImagyGallery from './ImageGallery';
+import Searchbar from './components/Searchbar';
+import ImagyGallery from './components/ImageGallery';
 import * as API from './services/app';
-import LoardMore from './Button';
-import Loader from './Loader';
+import LoardMore from './components/Button';
+import Loader from './components/Loader';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { AppStyled } from './App.styled';
 
@@ -37,7 +36,7 @@ export function App() {
 
   function handleSubmit(values) {
     setPage(1);
-    setQuery(values.query);
+    setQuery(prev => (prev !== values.query ? values.query : prev));
     setPictures([]);
   }
 
@@ -57,12 +56,3 @@ export function App() {
     </AppStyled>
   );
 }
-
-App.propTypes = {
-  page: PropTypes.number,
-  pictures: PropTypes.array,
-  query: PropTypes.string,
-  isLoading: PropTypes.bool,
-  handleSubmit: PropTypes.func,
-  handlLoadMore: PropTypes.func,
-};

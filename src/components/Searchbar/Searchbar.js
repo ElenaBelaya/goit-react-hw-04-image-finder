@@ -5,13 +5,13 @@ import {
   FieldStyled,
   SearchButtonStyled,
 } from './Searchbar.styled';
+import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 
 const Searchbar = ({ onSubmit }) => {
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     await onSubmit(values);
     setSubmitting(false);
-    resetForm();
   };
   return (
     <SearchbarStyled>
@@ -37,3 +37,7 @@ const Searchbar = ({ onSubmit }) => {
 };
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

@@ -37,12 +37,9 @@ function ImageGalleryItem({ picture }) {
 export default ImageGalleryItem;
 
 ImageGalleryItem.propTypes = {
-  pictures: PropTypes.array,
-  image: PropTypes.string,
-  tag: PropTypes.string,
-  largeImageURL: PropTypes.string,
-  webformatURL: PropTypes.string,
-  isModalOpen: PropTypes.bool,
-  handleModalClose: PropTypes.func,
-  handleModalOpen: PropTypes.func,
+  picture: PropTypes.shape({
+    tag: PropTypes.string,
+    largeImageURL: PropTypes.string.isRequired,
+    webformatURL: PropTypes.string.isRequired,
+  }),
 };

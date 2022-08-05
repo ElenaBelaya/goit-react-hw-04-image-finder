@@ -17,5 +17,6 @@ const LoardMore = ({ onLoadMore, isLoading }) => {
 export default LoardMore;
 
 LoardMore.propTypes = {
-  onLoadMore: PropTypes.func,
+  onLoadMore: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };

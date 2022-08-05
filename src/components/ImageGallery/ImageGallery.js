@@ -16,7 +16,6 @@ const ImagyGallery = ({ pictures }) => {
 
 ImagyGallery.propTypes = {
   pictures: PropTypes.array,
-  id: PropTypes.string,
 };
 
 export default ImagyGallery;

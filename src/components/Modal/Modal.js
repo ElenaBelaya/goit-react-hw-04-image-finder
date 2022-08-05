@@ -18,17 +18,7 @@ function Modal({ onModalClose, image, tag }) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  });
-
-  //  useEffect(() => {
-  //    window.addEventListener('keydown', handleKeyDown);
-  //  }, []);
-
-  //  useEffect(() => {
-  //    return () => {
-  //      window.removeEventListener('keydown', handleKeyDown);
-  //    };
-  //  }, []);
+  }, [onModalClose]);
 
   const handleBackDropClick = event => {
     if (event.currentTarget === event.target) {
@@ -47,10 +37,9 @@ function Modal({ onModalClose, image, tag }) {
 }
 
 Modal.propTypes = {
-  tag: PropTypes.string,
-  image: PropTypes.string,
-  handleKeyDown: PropTypes.func,
-  handleBackDropClick: PropTypes.func,
+  onModalClose: PropTypes.func.isRequired,
+  tag: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default Modal;
