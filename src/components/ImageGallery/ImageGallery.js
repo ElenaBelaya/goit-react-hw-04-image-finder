@@ -14,8 +14,12 @@ const ImagyGallery = ({ pictures }) => {
   );
 };
 
-ImagyGallery.propTypes = {
-  pictures: PropTypes.array,
-};
-
 export default ImagyGallery;
+
+ImagyGallery.propTypes = {
+  pictures: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ),
+};

@@ -14,10 +14,6 @@ export function App() {
   const [isLoading, setIsLoding] = useState(false);
 
   useEffect(() => {
-    setIsLoding(false);
-  }, []);
-
-  useEffect(() => {
     if (query === '') {
       return;
     }
@@ -35,9 +31,11 @@ export function App() {
   }, [page, query]);
 
   function handleSubmit(values) {
-    setPage(1);
-    setQuery(prev => (prev !== values.query ? values.query : prev));
-    setPictures([]);
+    if (values.query !== query) {
+      setPage(1);
+      setQuery(values.query);
+      setPictures([]);
+    }
   }
 
   function handlLoadMore() {
